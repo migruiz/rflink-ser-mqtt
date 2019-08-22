@@ -1,6 +1,6 @@
 const SerialPort = require('serialport')
 const Readline = require('@serialport/parser-readline')
-
+const mqtt = require('./mqttCluster.js');
 global.mtqqLocalPath = "mqtt://rflink-queue"
 
 var port = new SerialPort("/dev/ttyUSB0", {
@@ -9,7 +9,7 @@ var port = new SerialPort("/dev/ttyUSB0", {
 const parser = port.pipe(new Readline({ delimiter: '\r\n' }))
 parser.on('data', process)
 
-function process(data){
+async function process(data){
   data = someText = data.replace(/(\r\n|\n|\r)/gm,"");
   var segments = data.toString().split(";")
   if (segments[0]!=="20"){
