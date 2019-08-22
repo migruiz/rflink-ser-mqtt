@@ -1,7 +1,7 @@
 const SerialPort = require('serialport')
 const Readline = require('@serialport/parser-readline')
 const mqtt = require('./mqttCluster.js');
-global.mtqqLocalPath = "mqtt://rflink-queue"
+global.mtqqLocalPath = process.env.MQTTLOCAL;
 
 var port = new SerialPort("/dev/ttyUSB0", {
   baudRate: 57600,
