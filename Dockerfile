@@ -19,4 +19,4 @@ COPY App /App
 
 RUN [ "cross-build-end" ]  
 
-ENTRYPOINT ["node","/App/app.js"]
+ENTRYPOINT ["node","/App/serial.js"]
