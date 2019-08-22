@@ -9,6 +9,6 @@
   "dependencies": {
     "mqtt": "^2.18.3",
     "serialport": "7.1.5",
-    "raspi-serial": "5.1.1"
+    "@serialport/parser-readline": "2.0.2"
   }
 }
