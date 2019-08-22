@@ -1,5 +1,8 @@
 const SerialPort = require('serialport')
 const Readline = require('@serialport/parser-readline')
+
+global.mtqqLocalPath = "mqtt://rflink-queue"
+
 var port = new SerialPort("/dev/ttyUSB0", {
   baudRate: 57600,
 });
@@ -26,5 +29,6 @@ function process(data){
       dataObject[key] = value
     }
   }
-  console.log(JSON.stringify(dataObject));
+  var mqttCluster = await mqtt.getClusterAsync(); 
+  mqttCluster.publishData(deviceType, dataObject);
 }
