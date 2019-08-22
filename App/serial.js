@@ -1,7 +1,8 @@
 const SerialPort = require('serialport')
 const Readline = require('@serialport/parser-readline')
 const mqtt = require('./mqttCluster.js');
-global.mtqqLocalPath = process.env.MQTTLOCAL;
+
+global.mtqqLocalPath = "mqtt://192.168.1.6";
 
 var port = new SerialPort("/dev/ttyUSB0", {
   baudRate: 57600,
