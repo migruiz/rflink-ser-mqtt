@@ -7,6 +7,16 @@ global.mtqqLocalPath = "mqtt://192.168.0.11";
 var port = new SerialPort("/dev/ttyUSB0", {
   baudRate: 57600,
 });
+
+(async function(){
+  var mqttCluster=await mqtt.getClusterAsync() 
+  mqttCluster.subscribeData("rflinkTX", d => port.write(d+"\r\n"));
+  console.log('listenging rflink rx now');
+})();
+
+
+
+
 const parser = port.pipe(new Readline({ delimiter: '\r\n' }))
 parser.on('data', process)
 
