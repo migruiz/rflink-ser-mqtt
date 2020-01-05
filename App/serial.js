@@ -32,6 +32,9 @@ async function process(data){
       dataObject[key] = value
     }
   }
-  port.write("10;NewKaku;0cac142;3;ON;")
+  port.write("10;TriState;802a60;10;ON;")
+  //"20;46;TriState;ID=802a60;SWITCH=10;CMD=ON;"
+  //10;NewKaku;0cac142;3;ON;
+  
   mqttCluster.publishData(deviceType, dataObject);
 }
