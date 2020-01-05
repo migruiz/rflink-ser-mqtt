@@ -11,6 +11,8 @@ const parser = port.pipe(new Readline({ delimiter: '\r\n' }))
 parser.on('data', process)
 
 async function process(data){
+  var mqttCluster = await mqtt.getClusterAsync(); 
+  mqttCluster.publishData('rflink',data)
   data = someText = data.replace(/(\r\n|\n|\r)/gm,"");
   var segments = data.toString().split(";")
   if (segments[0]!=="20"){
@@ -30,6 +32,6 @@ async function process(data){
       dataObject[key] = value
     }
   }
-  var mqttCluster = await mqtt.getClusterAsync(); 
+  port.write("10;NewKaku;0cac142;3;ON;")
   mqttCluster.publishData(deviceType, dataObject);
 }
