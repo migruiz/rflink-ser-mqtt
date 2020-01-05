@@ -10,7 +10,7 @@ var port = new SerialPort("/dev/ttyUSB0", {
 
 (async function(){
   var mqttCluster=await mqtt.getClusterAsync() 
-  mqttCluster.subscribeData("rflinkTX", d => port.write(d+"\r\n"));
+  mqttCluster.subscribeData("rflinkTX", d => port.write(d.payload+"\r\n"));
   console.log('listenging rflink rx now');
 })();
 
