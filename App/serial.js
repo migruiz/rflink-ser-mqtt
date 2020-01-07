@@ -21,6 +21,9 @@ const parser = port.pipe(new Readline({ delimiter: '\r\n' }))
 parser.on('data', process)
 
 async function process(data){
+  if (!data.includes('Oregon')){
+    console.log(data)
+  }
   var mqttCluster = await mqtt.getClusterAsync(); 
   mqttCluster.publishData('rflink',data)
   data = someText = data.replace(/(\r\n|\n|\r)/gm,"");
