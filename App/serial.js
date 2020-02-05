@@ -11,7 +11,7 @@ var port = new SerialPort("/dev/ttyUSB0", {
 (async function(){
   var mqttCluster=await mqtt.getClusterAsync() 
   mqttCluster.subscribeData("rflinkTX", d => port.write(d.payload+"\r\n"));
-  mqttCluster.subscribeData("stat/tasmota/RESULT'", d => console.log(JSON.stringify(d)))
+  mqttCluster.subscribeData("stat/tasmota/RESULT", d => console.log(JSON.stringify(d)))
   console.log('listenging rflink rx now');
 })();
 
